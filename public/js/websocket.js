@@ -30,10 +30,12 @@ Bgpio.WebSocket.connect = function(ip) {
 
 Bgpio.WebSocket.open = function(evt) {
   if (Bgpio.DEBUG) console.log("connected\n");
+  Bgpio.appendTextJsConsole("Connected...\n");
 };
 
 Bgpio.WebSocket.close = function(evt) {
   if (Bgpio.DEBUG) console.log("disconnected\n");
+  Bgpio.appendTextJsConsole("Disconnected!\n");
 };
 
 Bgpio.WebSocket.disconnect = function() {
@@ -48,6 +50,9 @@ Bgpio.WebSocket.send = function(message) {
 
 Bgpio.WebSocket.receive = function(evt) {
   if (Bgpio.DEBUG) console.log("received: " + evt.data + '\n');
+  var recvData  = JSON.parse(evt.data);
+  if (recvData.stdout_line)
+    Bgpio.appendTextJsConsole(recvData.stdout_line);
 };
 
 Bgpio.WebSocket.error = function(evt) {
@@ -60,3 +65,4 @@ Bgpio.WebSocket.sendCode = function(codeStr) {
   if (Bgpio.DEBUG) console.log('payload: ' + payload + '\n');
   Bgpio.WebSocket.ws.onopen = () => Bgpio.WebSocket.send(payload);
 };
+

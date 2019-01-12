@@ -11,7 +11,7 @@ import codecs
 import subprocess
 from server.SimpleWebSocketServer import WebSocket
 from server.SimpleWebSocketServer import SimpleWebSocketServer
-
+import re
 
 class BlocklyGpioHandler(WebSocket):
     """ Description. """
@@ -21,7 +21,7 @@ class BlocklyGpioHandler(WebSocket):
         print(self.data)
         parsed_json = json.loads(self.data)
         if parsed_json['content'] == 'python_code':
-            run_python_code(parsed_json['code'])
+            run_python_code(parsed_json['code'], self)
         #self.sendMessage(self.data)
 
     def handleConnected(self):
@@ -39,10 +39,10 @@ def run_server():
     server.serveforever()
 
 
-def run_python_code(code):
+def run_python_code(code, ws):
     """ Description. """
     file_location = create_python_file(code)
-    run_python_file(file_location)
+    run_python_file(file_location, ws)
 
 
 def create_python_file(code):
@@ -51,7 +51,9 @@ def create_python_file(code):
     try:
         python_file = codecs.open(file_path, 'wb+', encoding='utf-8')
         try:
-            python_file.write(code)
+            extended_code = 'import sys\n'
+            extended_code += re.sub(r'(.*)(print\(.*\))(\n)', r'\1\2\3\1sys.stdout.flush()\n\3', code)
+            python_file.write(extended_code)
         finally:
             python_file.close()
     except Exception as e:
@@ -62,8 +64,16 @@ def create_python_file(code):
     return file_path
 
 
-def run_python_file(location):
+def run_python_file(location, ws):
     """ Description. """
     cli_command = ['python', location]
     print('CLI command: %s' % ' '.join(cli_command))
-    subprocess.Popen(cli_command, shell=False)
+    current_process = subprocess.Popen(cli_command,
+            bufsize=1,
+            shell=False, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT)
+    ws.sendMessage(json.dumps({ 'stdout_line' : 'Program started...' }) + '\n')
+    for line in iter(current_process.stdout.readline, ''):
+        ws.sendMessage(json.dumps({ 'stdout_line' : line.rstrip() }) + '\n')
+

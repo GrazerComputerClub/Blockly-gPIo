@@ -116,13 +116,22 @@ Bgpio.setPinDigital = function(pinNumber, isPinHigh) {
 };
 
 Bgpio.appendTextJsConsole = function(text) {
-  var jsConsole = document.getElementById('jsConsolePre');
+  var consoleId = (Bgpio.runMode.getSelectedMode() == Bgpio.runMode.types[1]) ?
+    'pythonConsolePre' : 'jsConsolePre';
+  if (Bgpio.DEBUG) console.log('Print in console with id: ' + consoleId);
+  var jsConsole = document.getElementById(consoleId);
   jsConsole.textContent += text + '\n';
 };
 
 Bgpio.clearJsConsole = function(text) {
-  var jsConsole = document.getElementById('jsConsolePre');
-  jsConsole.textContent = 'Simulated print output.\n';
+  var consoleId = (Bgpio.runMode.getSelectedMode() == Bgpio.runMode.types[1]) ?
+    'pythonConsolePre' : 'jsConsolePre';
+  if (Bgpio.DEBUG) console.log('Clear console with id: ' + consoleId);
+  var jsConsole = document.getElementById(consoleId);
+  if (Bgpio.runMode.getSelectedMode() == Bgpio.runMode.types[0])
+    jsConsole.textContent = 'Simulated print output.\n';
+  else
+    jsConsole.textContent = '';
 };
 
 /*******************************************************************************

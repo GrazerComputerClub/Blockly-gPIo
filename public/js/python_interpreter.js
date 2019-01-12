@@ -20,6 +20,8 @@ Bgpio.PythonInterpreter.debugStep = function() {
 };
 
 Bgpio.PythonInterpreter.run = function() {
+  Bgpio.clearJsConsole();
+  Bgpio.appendTextJsConsole('Executing script @ ' + Bgpio.getRaspPiIp() + '\n');
   var code = document.getElementById('pythonCodePre').textContent;
   if (Bgpio.DEBUG) console.log('Run Python code: \n' + code);
   Bgpio.WebSocket.connect(Bgpio.getRaspPiIp());
