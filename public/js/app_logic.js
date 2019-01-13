@@ -62,6 +62,7 @@ Bgpio.runMode = {
           this.debugStep = Bgpio.JsInterpreter.debugStep;
           this.run = Bgpio.JsInterpreter.run;
           this.stop = Bgpio.JsInterpreter.stop;
+          document.getElementById('debugInitButton').disabled = false;
         } else {
           simulationContent.style.display = 'none';
           executionContent.style.display = 'block';
@@ -69,6 +70,7 @@ Bgpio.runMode = {
           this.debugStep = Bgpio.PythonInterpreter.debugStep;
           this.run = Bgpio.PythonInterpreter.run;
           this.stop = Bgpio.PythonInterpreter.stop;
+          document.getElementById('debugInitButton').disabled = true;
         }
       },
 };
@@ -140,7 +142,9 @@ Bgpio.clearJsConsole = function(text) {
 Bgpio.getRaspPiIp = function() {
   var ipField = document.getElementById('raspPiIp');
   var ip = ipField.value;
-  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip)) {
+  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) 
+      || ip.toLowerCase() == 'localhost'
+      || ip.toLowerCase() == 'raspberrypi.local') {
     ipField.style.color = "green";
     return ipField.value;
   }

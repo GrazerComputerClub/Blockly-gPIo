@@ -18,12 +18,11 @@
 </head>
 
 <body>
-  <h1>Blockly gPIo</h1>
-  <p>Simple proof of concept for Blockly to generate Python gpio code and javascript to simulate gpios on browser.</p>
+  <h1>GC²'s Blockly gPIo</h1>
   <p>
     <button onclick="Bgpio.runMode.selectNextMode()">Change mode</button> Mode:
     <span id="modeSimulation">Simulation</span>
-    <span id="modeExecution">Execution <input type="text" id="raspPiIp" value="Raspbery Pi IP" /></span>
+    <span id="modeExecution">Execution <input type="text" id="raspPiIp" value="raspberrypi.local" /></span>
   </p>
   <p>
     <button id="debugInitButton" onclick="Bgpio.runMode.debugInit()">Debug Code</button>
@@ -147,6 +146,62 @@
             <th id="pin26">26</th>
             <td><span class="piSpi">CE1</span></td>
             <td>7</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin27">27</th>
+            <th id="pin28">28</th>
+            <td><span class="piGpio">-</span></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin29">29</th>
+            <th id="pin30">30</th>
+            <td><span class="pinGround">0v</span></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin31">31</th>
+            <th id="pin32">32</th>
+            <td><span class="piGpio">-</span></td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin33">33</th>
+            <th id="pin34">34</th>
+            <td><span class="pinGround">0v</span></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin35">35</th>
+            <th id="pin36">36</th>
+            <td><span class="piGpio">-</span></td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td><span class="piGpio">-</span></td>
+            <th id="pin37">37</th>
+            <th id="pin38">38</th>
+            <td><span class="piGpio">-</span></td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td><span class="pinGround">0v</span></td>
+            <th id="pin39">39</th>
+            <th id="pin40">40</th>
+            <td><span class="piGpio">-</span></td>
+            <td>21</td>
           </tr>
           <tr>
             <th class="noborder">BCM</th>

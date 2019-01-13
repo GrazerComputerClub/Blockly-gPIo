@@ -14,7 +14,7 @@ pre {
 
 /* Content */
 .content {
-  height: 480px;
+  height: 590px;
   padding: 0;
   margin: 0;
 }
@@ -34,11 +34,11 @@ pre {
   border-width: 1px;
 }
 .rightContentTop {
-  height: 350px;
+  height: 490px;
   overflow: auto;
 }
 .rightContentBottom {
-  height: 130px;
+  height: 100px;
   overflow: auto;
   background-color: #6D6C6C;
   color: #F1F1F1;
