@@ -62,6 +62,7 @@ Bgpio.runMode = {
           this.debugStep = Bgpio.JsInterpreter.debugStep;
           this.run = Bgpio.JsInterpreter.run;
           this.stop = Bgpio.JsInterpreter.stop;
+          document.getElementById('debugInitButton').disabled = false;
         } else {
           simulationContent.style.display = 'none';
           executionContent.style.display = 'block';
@@ -69,6 +70,7 @@ Bgpio.runMode = {
           this.debugStep = Bgpio.PythonInterpreter.debugStep;
           this.run = Bgpio.PythonInterpreter.run;
           this.stop = Bgpio.PythonInterpreter.stop;
+          document.getElementById('debugInitButton').disabled = true;
         }
       },
 };

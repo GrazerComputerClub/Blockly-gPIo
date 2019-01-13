@@ -53,6 +53,11 @@ Bgpio.WebSocket.receive = function(evt) {
   var recvData  = JSON.parse(evt.data);
   if (recvData.stdout_line)
     Bgpio.appendTextJsConsole(recvData.stdout_line);
+  else if (recvData.state_change) {
+    var runButton = document.getElementById('runButton');
+    runButton.disabled= '';
+    Bgpio.appendTextJsConsole('### Done ###');
+  }
 };
 
 Bgpio.WebSocket.error = function(evt) {

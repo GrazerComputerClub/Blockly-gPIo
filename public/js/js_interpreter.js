@@ -75,7 +75,8 @@ Bgpio.JsInterpreter.run = function() {
       stop = true;
     } else {
       // Add the next step to the event loop to not freeze the browser
-      setTimeout(recursiveStep, 0);
+      if (Bgpio.runMode.selected == 0)
+        setTimeout(recursiveStep, 0);
     }
     if (stop) {
       stopButton.disabled = 'disabled';

@@ -20,6 +20,8 @@ Bgpio.PythonInterpreter.debugStep = function() {
 };
 
 Bgpio.PythonInterpreter.run = function() {
+  var runButton = document.getElementById('runButton');
+  runButton.disabled= 'disabled';
   Bgpio.clearJsConsole();
   Bgpio.appendTextJsConsole('Executing script @ ' + Bgpio.getRaspPiIp() + '\n');
   var code = document.getElementById('pythonCodePre').textContent;
