@@ -36,6 +36,8 @@ Bgpio.WebSocket.open = function(evt) {
 Bgpio.WebSocket.close = function(evt) {
   if (Bgpio.DEBUG) console.log("disconnected\n");
   Bgpio.appendTextJsConsole("Disconnected!\n");
+  var runButton = document.getElementById('runButton');
+  runButton.disabled= '';
 };
 
 Bgpio.WebSocket.disconnect = function() {
