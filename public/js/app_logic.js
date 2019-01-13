@@ -142,7 +142,9 @@ Bgpio.clearJsConsole = function(text) {
 Bgpio.getRaspPiIp = function() {
   var ipField = document.getElementById('raspPiIp');
   var ip = ipField.value;
-  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip)) {
+  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) 
+      || ip.toLowerCase() == 'localhost'
+      || ip.toLowerCase() == 'raspberrypi.local') {
     ipField.style.color = "green";
     return ipField.value;
   }
