@@ -30,3 +30,4 @@ Client (Blockly) side points:
 
 Server side:
 * Possibility to stop the execution (from the client)
+* Max execution time 5 minutes (and Blockly code)
