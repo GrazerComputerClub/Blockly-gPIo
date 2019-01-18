@@ -12,10 +12,6 @@ Bgpio.WebSocket = {};
 Bgpio.WebSocket.ws = null;
 Bgpio.WebSocket.URL = 'ws://localhost:8000/';
 
-Bgpio.WebSocket.init = function() {
-  Bgpio.WebSocket.connect();
-};
-
 Bgpio.WebSocket.connect = function(ip) {
   if (ip) {
     Bgpio.WebSocket.ws = new WebSocket('ws://' + ip + ':8000/');
