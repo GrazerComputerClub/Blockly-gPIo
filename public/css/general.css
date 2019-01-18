@@ -16,6 +16,10 @@ pre {
 	color: #ff0000;
 }
 
+.cfgBtn {
+  color: chocolate;
+}
+
 .ChgModeBtn {
 	color: #00ff00;
 }
@@ -186,6 +190,12 @@ pre {
 .popup-btn:focus {
   color: #000;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.menuBtn:hover,
+.menuBtn:focus {
+  color: #000;
   cursor: pointer;
 }
 

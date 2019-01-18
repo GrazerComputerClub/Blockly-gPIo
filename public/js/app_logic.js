@@ -41,7 +41,6 @@ Bgpio.init = function () {
     Bgpio.workspace.addChangeListener(Bgpio.renderPythonCode);
 
     Bgpio.clearJsConsole();
-    Bgpio.WebSocket.init();
 };
 
 window.addEventListener('load', function load(event) {
@@ -70,26 +69,27 @@ Bgpio.runMode = {
     , run: Bgpio.JsInterpreter.run
     , stop: Bgpio.JsInterpreter.stop
     , updateState_: function () {
-        /*for (var i = 0; i < this.types.length; i++) {
-            var modeText = document.getElementById('mode' + this.types[i]);
-            if (i === this.selected) {
-                modeText.style.display = 'inline';
-            } else {
-                modeText.style.display = 'none';
-            }
-        }*/
-        var btn = document.getElementById('modeBtn');
-        var btn_icon = btn.firstChild;
+        var modeIcon = document.getElementById('modeIcon');
         if (Bgpio.runMode.selected == 0) {
-          btn_icon.classList.remove("fab");
-          btn_icon.classList.remove("fa-raspberry-pi");
-          btn_icon.classList.add("fas");
-          btn_icon.classList.add("fa-bug");
+          modeIcon.classList.remove("fab");
+          modeIcon.classList.remove("fa-raspberry-pi");
+          modeIcon.classList.add("fas");
+          modeIcon.classList.add("fa-bug");
+
+          document.getElementById("stopButton").style.visibility = "visible";
+          document.getElementById("debugInitButton").style.visibility = "visible";
+          document.getElementById("debugStepButton").style.visibility = "visible";
         } else {
-          btn_icon.classList.remove("fas");
-          btn_icon.classList.remove("fa-bug");
-          btn_icon.classList.add("fab");
-          btn_icon.classList.add("fa-raspberry-pi");
+          modeIcon.classList.remove("fas");
+          modeIcon.classList.remove("fa-bug");
+          modeIcon.classList.add("fab");
+          modeIcon.classList.add("fa-raspberry-pi");
+
+          // remove debug and stop button because 
+          // those are not implemented in RPi run-mode
+          document.getElementById("stopButton").style.visibility = "hidden";
+          document.getElementById("debugInitButton").style.visibility = "hidden";
+          document.getElementById("debugStepButton").style.visibility = "hidden";
         }
               var simulationContent = document.getElementById('simulationContentDiv');
         var executionContent = document.getElementById('executionContentDiv');
@@ -179,12 +179,9 @@ Bgpio.clearJsConsole = function (text) {
  ******************************************************************************/
 Bgpio.getRaspPiIp = function () {
     //var ipField = document.getElementById('raspPiIp');
-    var ipField = Bgpio.runMode.connectionAdr;
-    var ip = ipField.value;
+    var ip = Bgpio.runMode.connectionAdr;
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) || ip.toLowerCase() == 'localhost' || ip.toLowerCase() == 'raspberrypi.local') {
-        ipField.style.color = "green";
-        return ipField.value;
+        return ip;
     }
-    ipField.style.color = "red";
     return null;
 };
