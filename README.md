@@ -21,7 +21,6 @@ just improved his proof of concept to a slightly better working solution for our
 ## Open Points
 Client (Blockly) side points:
 * Support of dedicated hardware
-  * DS18S20
   * 7-segment display
 
 Server side:
