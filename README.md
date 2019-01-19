@@ -22,7 +22,6 @@ just improved his proof of concept to a slightly better working solution for our
 Client (Blockly) side points:
 * Support of dedicated hardware
   * DS18S20
-  * Distance sensor
   * 7-segment display
 
 Server side:

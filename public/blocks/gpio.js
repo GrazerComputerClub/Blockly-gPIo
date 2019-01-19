@@ -82,7 +82,7 @@ Blockly.Python['led_set'] = function(block) {
   var state = Blockly.Python.valueToCode(
       block, 'STATE', Blockly.Python.ORDER_ATOMIC) || '0';
 
-  Blockly.Python.definitions_['import_gpiozero'] = 'from gpiozero import LED';
+  Blockly.Python.definitions_['import_gpiozero_led'] = 'from gpiozero import LED';
   Blockly.Python.definitions_['declare_led' + pin] =
       'led' + pin + ' = LED(' + pin + ')';
 
@@ -177,9 +177,68 @@ Blockly.Python['dht22'] = function(block) {
       break;
     }
   }
-  Blockly.Python.definitions_['import_gpiozero'] = 'from dhtxx import DHT22';
+  Blockly.Python.definitions_['import_dht22'] = 'from dhtxx import DHT22';
   Blockly.Python.definitions_['declare_dht22_pin' + pin] =
       'dht22_pin' + pin + ' = DHT22(' + pin + ')';
   var code = 'dht22_pin' + pin + '.get_result_once()';
   return [code, Blockly.JavaScript.ORDER_MEMBER];
 };
+
+
+
+Blockly.Blocks['hc_sr04'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField("HC_SR04 echo on pin#")
+        .appendField(new Blockly.FieldDropdown(PINS), 'ECHO')
+        .appendField(" and trigger on pin#")
+        .appendField(new Blockly.FieldDropdown(PINS), 'TRIGGER');
+    this.setOutput(true, "Number");
+    this.setColour(GPIO_HUE);
+    this.setInputsInline(false);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
+    this.setTooltip("Ultrasonic Sensor - HC-SR04");
+    this.setHelpUrl("https://www.sparkfun.com/products/13959");
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['hc_sr04'] = function(block) {
+  var code = '42.42\n'; // return some dummy result values
+  return [code, Blockly.JavaScript.ORDER_MEMBER];;
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['hc_sr04'] = function(block) {
+  var echo = block.getFieldValue('ECHO');
+  var trigger = block.getFieldValue('TRIGGER');
+  // Very hackish way to get the BMC pin number, need to create a proper look
+  // up dicionary with a function to generate the dropdown
+  for (var i = 0; i < PINS.length; i++) {
+    if (PINS[i][1] == echo) {
+      echo = PINS[i][0];
+    }
+    if (PINS[i][1] == trigger) {
+      trigger = PINS[i][0];
+    }
+  }
+  Blockly.Python.definitions_['import_gpiozero_hcsr04'] = 'from gpiozero import DistanceSensor';
+  var sensor = 'hc_sr04_' + echo + trigger;
+  Blockly.Python.definitions_['declare_' + sensor] = 'DistanceSensor(echo=' + echo + ', trigger=' + trigger + ')';
+  var code = 'round(' + sensor + '.distance*100)';
+  return [code, Blockly.JavaScript.ORDER_MEMBER];
+};
+
