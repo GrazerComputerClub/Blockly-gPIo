@@ -19,15 +19,6 @@ just improved his proof of concept to a slightly better working solution for our
 3rd: Just open [blockly-gpio](https://grazercomputerclub.github.io/Blockly-gPIo/) and start to code.
 
 ## Open Points
-Client (Blockly) side points:
-* Import/Export of Blockly code
-* Support of dedicated hardware
-  * DHT
-  * DS18S20
-  * Distance sensor
-  * 7-segment display
-* Better print-statement (to print formated outputs)
-
 Server side:
 * Possibility to stop the execution (from the client)
 * Max execution time 5 minutes (and Blockly code)

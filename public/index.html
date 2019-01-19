@@ -63,7 +63,9 @@
     </div>
       <div class="btn-group topLeftContent" align="middle">
 				<i id="modeIcon" class="fas fa-bug fa-2x" style="color:dimgray;position:relative;left:-4rem"></i></a>
-				<a class="cfgBtn" href="#" id="modeBtn"><i class="fas fa-cog fa-2x menuBtn" ></i></a>
+        <a class="fileBtn" href="#" onclick="loadWork()"><i class="fas fa-folder-open fa-2x menuBtn" ></i></a>
+        <a class="fileBtn" href="#" onclick="saveWork()" style="padding-right:0.5rem"><i class="fas fa-save fa-2x menuBtn" ></i></a>
+				<a class="cfgBtn" href="#" id="modeBtn" style="padding-right:0.5rem"><i class="fas fa-cog fa-2x menuBtn" ></i></a>
         <a href="#" id="runButton" onclick="Bgpio.runMode.run()"><i class="fas fa-play-circle fa-2x menuBtn"></i></a>
         <a class="debugBtn" href="#" id="debugInitButton" onclick="Bgpio.runMode.debugInit()"><i class="fas fa-play-circle fa-2x menuBtn"></i></a>
         <a class="debugBtn" href="#" id="stopButton" onclick="Bgpio.runMode.stop()"><i class="fas fa-stop-circle fa-2x menuBtn"></i></a>
@@ -629,6 +631,12 @@
       <category name="gPIo" colour="50">
         <block type="led_set"></block>
         <block type="pin_binary"></block>
+        <block type="dht22"></block>
+        <block type="hc_sr04"></block>
+        <block type="tm1637"></block>
+        <block type="tm1637_numbers"></block>
+        <block type="tm1637_number"></block>
+        <block type="tm1637_temperature"></block>
       </category>
       <category name="time" colour="190">
         <block type="sleep_ms"></block>
@@ -774,6 +782,7 @@
     <script src="js/websocket.js"></script>
     <script src="js/app_logic.js"></script>
     <script src="js/popup.js"></script>
+    <script src="js/file.js"></script>
 </body>
 
 </html>
