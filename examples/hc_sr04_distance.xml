@@ -1,0 +1,83 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="text_print" x="70" y="50">
+    <value name="TEXT">
+      <block type="text">
+        <field name="TEXT">Measuring distance with a HC_SR04 ultra sonic sensor</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_whileUntil">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="variables_set">
+            <field name="VAR">dist</field>
+            <value name="VALUE">
+              <block type="hc_sr04">
+                <field name="ECHO">3</field>
+                <field name="TRIGGER">5</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set">
+                <field name="VAR">fmt_output</field>
+                <value name="VALUE">
+                  <block type="text_join">
+                    <mutation items="3"></mutation>
+                    <value name="ADD0">
+                      <block type="text">
+                        <field name="TEXT">Distance: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="lists_getIndex">
+                        <mutation statement="false" at="false"></mutation>
+                        <field name="MODE">GET</field>
+                        <field name="WHERE">FIRST</field>
+                        <value name="VALUE">
+                          <block type="variables_get">
+                            <field name="VAR">dist</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text">
+                        <field name="TEXT"> cm</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="variables_get">
+                        <field name="VAR">fmt_output</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sleep_ms">
+                        <value name="SLEEP_TIME_MILI">
+                          <block type="math_number">
+                            <field name="NUM">1000</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

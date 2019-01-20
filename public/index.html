@@ -46,7 +46,8 @@
         <h3>Available Raspberry PIs</h3>
       </div>
       <div class="modal-body" style="text-align:center">
-        <select id="adrSelector" size="5" style="width:80%">
+        <select id="adrSelector" size="5" style="width:80%" ondblclick="switchToExecution()">
+          <option>localhost</option>
           <option selected="true">RaspberryPi.local</option>
         </select>
       </div>
@@ -67,8 +68,8 @@
         <a class="fileBtn" href="#" onclick="saveWork()" style="padding-right:0.5rem"><i class="fas fa-save fa-2x menuBtn" ></i></a>
 				<a class="cfgBtn" href="#" id="modeBtn" style="padding-right:0.5rem"><i class="fas fa-cog fa-2x menuBtn" ></i></a>
         <a href="#" id="runButton" onclick="Bgpio.runMode.run()"><i class="fas fa-play-circle fa-2x menuBtn"></i></a>
+        <a href="#" id="stopButton" onclick="Bgpio.runMode.stop()"><i class="fas fa-stop-circle fa-2x menuBtn"></i></a>
         <a class="debugBtn" href="#" id="debugInitButton" onclick="Bgpio.runMode.debugInit()"><i class="fas fa-play-circle fa-2x menuBtn"></i></a>
-        <a class="debugBtn" href="#" id="stopButton" onclick="Bgpio.runMode.stop()"><i class="fas fa-stop-circle fa-2x menuBtn"></i></a>
         <a class="debugBtn" href="#" id="debugStepButton" onclick="Bgpio.runMode.debugStep()" disabled="disabled"><i class="fas fa-step-forward fa-2x menuBtn"></i></a>
       </div>
       <div id="blocklyDiv" class="content"></div>
@@ -580,10 +581,6 @@
             </shadow>
           </value>
         </block>
-        <block type="lists_sort">
-          <field name="TYPE">NUMERIC</field>
-          <field name="DIRECTION">1</field>
-        </block>
       </category>
       <category name="Colour" colour="10">
         <block type="colour_picker">
@@ -646,134 +643,27 @@
     <!-- Blocks to display on the workspace -->
     <xml id="startBlocks" style="display: none">
         <block type="text_print" x="20" y="9">
-            <value name="TEXT">
+          <value name="TEXT">
+            <block type="text">
+              <field name="TEXT">GC²'s Blockly implementation for Raspberry Pi</field>
+            </block>
+          </value>
+          <next>
+            <block type="text_print">
+              <value name="TEXT">
                 <block type="text">
-                    <field name="TEXT">GPIO toggling starting...</field>
+                  <field name="TEXT">We've prepared some examples which you can download from our GitHub</field>
                 </block>
-            </value>
-            <next>
-                <block type="led_set">
-                    <field name="PIN">3</field>
-                    <value name="STATE">
-                        <block type="pin_binary">
-                            <field name="STATE">HIGH</field>
-                        </block>
-                    </value>
-                    <next>
-                        <block type="sleep_ms">
-                            <value name="SLEEP_TIME_MILI">
-                                <block type="math_number">
-                                    <field name="NUM">1000</field>
-                                </block>
-                            </value>
-                            <next>
-                                <block type="led_set">
-                                    <field name="PIN">3</field>
-                                    <value name="STATE">
-                                        <block type="pin_binary">
-                                            <field name="STATE">LOW</field>
-                                        </block>
-                                    </value>
-                                    <next>
-                                        <block type="sleep_ms">
-                                            <value name="SLEEP_TIME_MILI">
-                                                <block type="math_number">
-                                                    <field name="NUM">1000</field>
-                                                </block>
-                                            </value>
-                                            <next>
-                                                <block type="controls_repeat_ext">
-                                                    <value name="TIMES">
-                                                        <block type="math_number">
-                                                            <field name="NUM">2</field>
-                                                        </block>
-                                                    </value>
-                                                    <statement name="DO">
-                                                        <block type="led_set">
-                                                            <field name="PIN">5</field>
-                                                            <value name="STATE">
-                                                                <block type="pin_binary">
-                                                                    <field name="STATE">HIGH</field>
-                                                                </block>
-                                                            </value>
-                                                            <next>
-                                                                <block type="sleep_ms">
-                                                                    <value name="SLEEP_TIME_MILI">
-                                                                        <block type="math_number">
-                                                                            <field name="NUM">500</field>
-                                                                        </block>
-                                                                    </value>
-                                                                    <next>
-                                                                        <block type="led_set">
-                                                                            <field name="PIN">5</field>
-                                                                            <value name="STATE">
-                                                                                <block type="pin_binary">
-                                                                                    <field name="STATE">LOW</field>
-                                                                                </block>
-                                                                            </value>
-                                                                            <next>
-                                                                                <block type="sleep_ms">
-                                                                                    <value name="SLEEP_TIME_MILI">
-                                                                                        <block type="math_number">
-                                                                                            <field name="NUM">500</field>
-                                                                                        </block>
-                                                                                    </value>
-                                                                                </block>
-                                                                            </next>
-                                                                        </block>
-                                                                    </next>
-                                                                </block>
-                                                            </next>
-                                                        </block>
-                                                    </statement>
-                                                    <next>
-                                                        <block type="led_set">
-                                                            <field name="PIN">7</field>
-                                                            <value name="STATE">
-                                                                <block type="pin_binary">
-                                                                    <field name="STATE">HIGH</field>
-                                                                </block>
-                                                            </value>
-                                                            <next>
-                                                                <block type="sleep_ms">
-                                                                    <value name="SLEEP_TIME_MILI">
-                                                                        <block type="math_number">
-                                                                            <field name="NUM">1000</field>
-                                                                        </block>
-                                                                    </value>
-                                                                    <next>
-                                                                        <block type="led_set">
-                                                                            <field name="PIN">7</field>
-                                                                            <value name="STATE">
-                                                                                <block type="pin_binary">
-                                                                                    <field name="STATE">LOW</field>
-                                                                                </block>
-                                                                            </value>
-                                                                            <next>
-                                                                                <block type="text_print">
-                                                                                    <value name="TEXT">
-                                                                                        <block type="text">
-                                                                                            <field name="TEXT">GPIO toggling done</field>
-                                                                                        </block>
-                                                                                    </value>
-                                                                                </block>
-                                                                            </next>
-                                                                        </block>
-                                                                    </next>
-                                                                </block>
-                                                            </next>
-                                                        </block>
-                                                    </next>
-                                                </block>
-                                            </next>
-                                        </block>
-                                    </next>
-                                </block>
-                            </next>
-                        </block>
-                    </next>
+              </value>
+              <next>
+                <block type="text_print">
+                  <value name="TEXT">
+                    <block type="text">
+                      <field name="TEXT">https://github.com/GrazerComputerClub/Blockly-gPIo/tree/master/examples</field>
+                    </block>
+                  </value>
                 </block>
-            </next>
+            </block>
         </block>
     </xml>
 

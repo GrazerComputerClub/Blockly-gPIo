@@ -75,8 +75,7 @@ Bgpio.runMode = {
           modeIcon.classList.remove("fa-raspberry-pi");
           modeIcon.classList.add("fas");
           modeIcon.classList.add("fa-bug");
-
-          document.getElementById("stopButton").style.visibility = "visible";
+          document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
           document.getElementById("debugInitButton").style.visibility = "visible";
           document.getElementById("debugStepButton").style.visibility = "visible";
         } else {
@@ -85,9 +84,9 @@ Bgpio.runMode = {
           modeIcon.classList.add("fab");
           modeIcon.classList.add("fa-raspberry-pi");
 
-          // remove debug and stop button because 
+          // remove debug button because 
           // those are not implemented in RPi run-mode
-          document.getElementById("stopButton").style.visibility = "hidden";
+          document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
           document.getElementById("debugInitButton").style.visibility = "hidden";
           document.getElementById("debugStepButton").style.visibility = "hidden";
         }

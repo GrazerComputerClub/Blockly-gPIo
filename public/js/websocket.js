@@ -33,7 +33,7 @@ Bgpio.WebSocket.close = function(evt) {
   if (Bgpio.DEBUG) console.log("disconnected\n");
   Bgpio.appendTextJsConsole("Disconnected!\n");
   var runButton = document.getElementById('runButton');
-  runButton.disabled= '';
+  runButton.setAttribute("onclick", "Bgpio.runMode.run()")
 };
 
 Bgpio.WebSocket.disconnect = function() {
@@ -53,7 +53,7 @@ Bgpio.WebSocket.receive = function(evt) {
     Bgpio.appendTextJsConsole(recvData.stdout_line);
   else if (recvData.state_change) {
     var runButton = document.getElementById('runButton');
-    runButton.disabled= '';
+    runButton.setAttribute("onclick", "Bgpio.runMode.run()")
     Bgpio.appendTextJsConsole('### Done ###');
   }
 };
@@ -69,3 +69,9 @@ Bgpio.WebSocket.sendCode = function(codeStr) {
   Bgpio.WebSocket.ws.onopen = () => Bgpio.WebSocket.send(payload);
 };
 
+Bgpio.WebSocket.sendStop = function() {
+  var payload = JSON.stringify({'content': 'request', 'request_code': 'stop'})
+  if (Bgpio.DEBUG) console.log('payload: ' + payload + '\n');
+  // here the socket must be open
+  Bgpio.WebSocket.send(payload);
+};
