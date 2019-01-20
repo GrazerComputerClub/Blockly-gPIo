@@ -22,10 +22,13 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 async def request_handler(websocket, path):
     while True:
-        data = await websocket.recv()
-        parsed_json = json.loads(data)
-        if parsed_json['content'] == 'python_code':
-            await run_python_code(parsed_json['code'], websocket)
+        try:
+            data = await asyncio.wait_for(websocket.recv(), timeout=0.02)
+            parsed_json = json.loads(data)
+            if parsed_json['content'] == 'python_code':
+                await run_python_code(parsed_json['code'], websocket)
+        except asyncio.TimeoutError:
+            pass # nothing in recv queue
 
 
 def run_server():
@@ -98,7 +101,21 @@ async def run_python_file(location, websocket):
                 print('Sub process running too long: ' + str(running_time))
                 await websocket.send(json.dumps({ 'stdout_line' : 'ERR: Process is running too long' }) + '\n')
                 current_process.kill()
-            sleep(0.02) # sleep for 20ms (means ui update interval ~50Hz)
+            try:
+                data = await asyncio.wait_for(websocket.recv(), timeout=0.02) # timeout means ui update interval of ~50Hz
+                parsed_json = json.loads(data)
+                if parsed_json['content'] == 'request' and parsed_json['request_code'] == 'stop':
+                    print('Execution stop requested')
+                    await websocket.send(json.dumps({ 'stdout_line' : 'NOTIFY: Stop-request processed' }) + '\n')
+                    current_process.kill()
+                else:
+                    print('Wrong data package received')
+                    await websocket.send(json.dumps({ 'stdout_line' : 'ERR: Wrong data received - process killed' }) + '\n')
+                    current_process.kill()
+            except asyncio.TimeoutError:
+                pass # nothing in recv queue
+            except Exception:
+                pass # maybe a json parsing exception
     except Exception as e:
         print(e)
         await websocket.send(json.dumps({ 'stdout_line' : 'ERR - Exception occurred: ' + str(e) }) + '\n')

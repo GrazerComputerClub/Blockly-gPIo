@@ -18,6 +18,3 @@ just improved his proof of concept to a slightly better working solution for our
 
 3rd: Just open [blockly-gpio](https://grazercomputerclub.github.io/Blockly-gPIo/) and start to code.
 
-## Open Points
-Server side:
-* Possibility to stop the execution (from the client)

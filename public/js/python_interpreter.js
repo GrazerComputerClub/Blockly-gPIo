@@ -21,7 +21,7 @@ Bgpio.PythonInterpreter.debugStep = function() {
 
 Bgpio.PythonInterpreter.run = function() {
   var runButton = document.getElementById('runButton');
-  runButton.disabled= 'disabled';
+  runButton.removeAttribute("onclick");
   Bgpio.clearJsConsole();
   Bgpio.appendTextJsConsole('Executing script @ ' + Bgpio.getRaspPiIp() + '\n');
   var code = document.getElementById('pythonCodePre').textContent;
@@ -32,5 +32,5 @@ Bgpio.PythonInterpreter.run = function() {
 
 Bgpio.PythonInterpreter.stop = function() {
   if (Bgpio.DEBUG) console.log('Stop running Python code');
-  alert('Feature not yet implemented.');
+  Bgpio.WebSocket.sendStop();
 };
