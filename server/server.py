@@ -5,14 +5,20 @@
 # Licensed under the Apache License, Version 2.0 (the "License"):
 #   http://www.apache.org/licenses/LICENSE-2.0
 from __future__ import unicode_literals, absolute_import
+import sys
 import os
 import json
 import codecs
-import subprocess
 import websockets
 import asyncio
 import re
+from subprocess import PIPE, Popen, STDOUT
+from threading  import Thread
+from queue import Queue, Empty
+from datetime import datetime
+from time import sleep
 
+ON_POSIX = 'posix' in sys.builtin_module_names
 
 async def request_handler(websocket, path):
     while True:
@@ -56,22 +62,46 @@ def create_python_file(code):
     return file_path
 
 
+def enqueue_output(out, queue):
+    for line in iter(out.readline, b''):
+        queue.put(line)
+    out.close()
+
+
 async def run_python_file(location, websocket):
     """ Description. """
     cli_command = ['python', location]
     print('CLI command: %s' % ' '.join(cli_command))
     try:
-        current_process = subprocess.Popen(cli_command,
+        start_time = datetime.now()
+        current_process = Popen(cli_command,
                 bufsize=1,
                 shell=False, 
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT)
-        print('Sub process started')
+                stdout=PIPE,
+                stderr=STDOUT,
+                close_fds=ON_POSIX)
+        queue = Queue()
+        stdout_thread = Thread(target=enqueue_output, args=(current_process.stdout, queue))
+        stdout_thread.daemon = True # thread dies with the program
+        stdout_thread.start()
+        print('Sub process started  @ ' + str(start_time))
         await websocket.send(json.dumps({ 'stdout_line' : 'Program started...' }) + '\n')
-        for line in current_process.stdout:
-            await websocket.send(json.dumps({ 'stdout_line' : str(line.rstrip()) }) + '\n')
+        while current_process.poll() == None:
+            try:
+                line = queue.get_nowait() # or queue.get(timeout=.1)
+                await websocket.send(json.dumps({ 'stdout_line' : str(line.rstrip()) }) + '\n')
+            except Empty:
+                # ok, no line at the moment
+                pass
+            running_time = datetime.now() - start_time
+            if running_time.total_seconds() > 300: # 5 min
+                print('Sub process running too long: ' + str(running_time))
+                await websocket.send(json.dumps({ 'stdout_line' : 'ERR: Process is running too long' }) + '\n')
+                current_process.kill()
+            sleep(0.02) # sleep for 20ms (means ui update interval ~50Hz)
     except Exception as e:
         print(e)
+        await websocket.send(json.dumps({ 'stdout_line' : 'ERR - Exception occurred: ' + str(e) }) + '\n')
     finally:
         await websocket.send(json.dumps({ 'state_change' : 'finished' }) + '\n')
         print('Execution done')
