@@ -73,7 +73,7 @@ def enqueue_output(out, queue):
 
 async def run_python_file(location, websocket):
     """ Description. """
-    cli_command = ['python', location]
+    cli_command = ['/usr/bin/python3', location]
     print('CLI command: %s' % ' '.join(cli_command))
     try:
         start_time = datetime.now()
