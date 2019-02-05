@@ -18,3 +18,7 @@ just improved his proof of concept to a slightly better working solution for our
 
 3rd: Just open [blockly-gpio](https://grazercomputerclub.github.io/Blockly-gPIo/) and start to code.
 
+Future tasks:
+* Save and load function on Chrome and Firefox, Safari (Android, IPad)
+* wss support (https)
+* Port scanner to find available servers
