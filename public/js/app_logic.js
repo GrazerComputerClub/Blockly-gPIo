@@ -179,8 +179,12 @@ Bgpio.clearJsConsole = function (text) {
 Bgpio.getRaspPiIp = function () {
     //var ipField = document.getElementById('raspPiIp');
     var ip = Bgpio.runMode.connectionAdr;
-    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) || ip.toLowerCase() == 'localhost' || ip.toLowerCase() == 'raspberrypi.local') {
+    var altIp = document.getElementById('altIP');
+    if (altIp.value != "") {
+        return altIp.value;
+    } else if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip) || ip.toLowerCase() == 'localhost' || ip.toLowerCase() == 'raspberrypi.local') {
         return ip;
     }
     return null;
 };
+

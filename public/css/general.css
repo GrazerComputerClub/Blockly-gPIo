@@ -57,11 +57,11 @@ pre {
   border-width: 1px;
 }
 .rightContentTop {
-  height: 620px;
+  /*height: 620px;*/
   overflow: auto;
 }
 .rightContentBottom {
-  height: 140px;
+  /*height: 140px;*/
   overflow: auto;
   background-color: #6D6C6C;
   color: #F1F1F1;
