@@ -133,6 +133,55 @@ Blockly.Python['pin_binary'] = function(block) {
 };
 
 
+Blockly.Blocks['gc2'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField("GC2 xHAT v1.0 Demo")
+    this.setColour(GPIO_HUE);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip("GC2 xHAT");
+    this.setHelpUrl("https://github.com/GrazerComputerClub");
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['gc2'] = function(block) {
+  var code = 'jsPrint(Run GC2 xHAT v1.0 demo);\n';
+  return [code, Blockly.JavaScript.ORDER_MEMBER];
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['gc2'] = function(block) {
+  //var pin = block.getFieldValue('PIN');
+  // Very hackish way to get the BMC pin number, need to create a proper look
+  // up dicionary with a function to generate the dropdown
+  //for (var i = 0; i < PINS.length; i++) {
+  //  if (PINS[i][1] == pin) {
+  //    pin = PINS[i][0];
+  //    break;
+  //  }
+  //}
+  //Blockly.Python.definitions_['import_dht22'] = 'from dhtxx import DHT22';
+  //Blockly.Python.definitions_['declare_dht22_pin' + pin] =
+  //    'dht22_pin' + pin + ' = DHT22(' + pin + ')';
+  //var code = 'dht22_pin' + pin + '.get_result_once()';
+  var code = '';
+  return [code, Blockly.JavaScript.ORDER_MEMBER];
+};
+
 Blockly.Blocks['dht22'] = {
   /**
    * Description.
@@ -295,9 +344,13 @@ Blockly.Python['tm1637'] = function(block) {
   for (var i = 0; i < PINS.length; i++) {
     if (PINS[i][1] == clk) {
       clk = PINS[i][0];
+      break;
     }
+  }
+  for (var i = 0; i < PINS.length; i++) {
     if (PINS[i][1] == dio) {
       dio = PINS[i][0];
+      break;
     }
   }
   var argument0 = Blockly.Python.valueToCode(block, 'DATA',
