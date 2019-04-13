@@ -10,11 +10,15 @@ just improved his proof of concept to a slightly better working solution for our
 
 ## How to use
 1st: Make sure that the RPi has the following packages installed:
-* python3
-  * websockets lib
+  * python3 (apt-get install python3-dev python3-gpiozero python3-pip python3-websocket)
+  * websockets lib (pip3 install websockets) 
   * gpiozero lib
 
-2nd: Download this repository and execute *run.py*
+2nd: Download this repository and execute *run.py* (call 'python3 run.py')
 
 3rd: Just open [blockly-gpio](https://grazercomputerclub.github.io/Blockly-gPIo/) and start to code.
 
+Future tasks:
+* Save and load function on Chrome and Firefox, Safari (Android, IPad) [https://github.com/eligrey/FileSaver.js]
+* wss support (https)
+* Port scanner to find available servers
