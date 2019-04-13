@@ -3,13 +3,17 @@ function saveWork() {
   var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
   var filename = 'work.xml'
-	var pom = document.createElement('a');
-	pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlText));
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlText));
 	if (filename) {
-		pom.setAttribute('download', filename);
+		element.setAttribute('download', filename);
 	}
-	pom.click();
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
 };
+
 
 function loadWork() {
 	var pom = document.createElement('input');
