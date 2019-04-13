@@ -1,0 +1,43 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="text_print" x="20" y="9">
+    <value name="TEXT">
+      <block type="text">
+        <field name="TEXT">GC²'s Blockly implementation for Raspberry Pi</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT">Sample for distance measurement</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print">
+            <value name="TEXT">
+              <block type="text_join">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="text">
+                    <field name="TEXT">Distance: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="hc_sr04">
+                    <field name="ECHO">13</field>
+                    <field name="TRIGGER">11</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text">
+                    <field name="TEXT"> cm </field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
