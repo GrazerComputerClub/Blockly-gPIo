@@ -95,6 +95,113 @@ Blockly.Python['led_set'] = function(block) {
   return code;
 };
 
+Blockly.Blocks['btn_wait_for'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl('');
+    this.setColour(GPIO_HUE);
+    this.appendDummyInput()
+        .appendField('wait for pin#')
+        .appendField(new Blockly.FieldDropdown(PINS), 'PIN')
+        .appendField(' (button) pressed')
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('');
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['btn_wait_for'] = function(block) {
+  var code = 'delayMs(1000);\n';
+  return code;
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['btn_wait_for'] = function(block) {
+  var pin = block.getFieldValue('PIN');
+  // Very hackish way to get the BMC pin number, need to create a proper look
+  // up dicionary with a function to generate the dropdown
+  for (var i = 0; i < PINS.length; i++) {
+    if (PINS[i][1] == pin) {
+      pin = PINS[i][0];
+      break;
+    }
+  }
+
+  Blockly.Python.definitions_['import_gpiozero_button'] = 'from gpiozero import Button';
+  Blockly.Python.definitions_['declare_button' + pin] =
+      'button' + pin + ' = Button(' + pin + ', pull_up=False)';
+
+  var code = 'button' + pin + '.wait_for_press()\n';
+  return code;
+};
+
+Blockly.Blocks['btn_pressed'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.appendDummyInput()
+        .appendField("button on pin#")
+        .appendField(new Blockly.FieldDropdown(PINS), 'PIN')
+        .appendField("is pressed");
+    this.setOutput(true);
+    this.setColour(GPIO_HUE);
+    this.setInputsInline(false);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['btn_pressed'] = function(block) {
+  var code = 'True\n'; // return some dummy result values
+  return [code, Blockly.JavaScript.ORDER_MEMBER];
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['btn_pressed'] = function(block) {
+  var pin = block.getFieldValue('PIN');
+  // Very hackish way to get the BMC pin number, need to create a proper look
+  // up dicionary with a function to generate the dropdown
+  for (var i = 0; i < PINS.length; i++) {
+    if (PINS[i][1] == pin) {
+      pin = PINS[i][0];
+      break;
+    }
+  }
+
+  Blockly.Python.definitions_['import_gpiozero_button'] = 'from gpiozero import Button';
+  Blockly.Python.definitions_['declare_button' + pin] =
+      'button' + pin + ' = Button(' + pin + ', pull_up=False)';
+
+  var code = 'button' + pin + '.is_pressed';
+  return [code, Blockly.JavaScript.ORDER_MEMBER];
+};
+
 Blockly.Blocks['pin_binary'] = {
   /**
    * Description.
