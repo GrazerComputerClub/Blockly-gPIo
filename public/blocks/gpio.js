@@ -385,7 +385,7 @@ Blockly.Python['dht11'] = function(block) {
       break;
     }
   }
-  Blockly.Python.definitions_['import_dht11'] = 'from dhtxx import dht11';
+  Blockly.Python.definitions_['import_dht11'] = 'from dhtxx import DHT11';
   Blockly.Python.definitions_['declare_dht11_pin' + pin] =
       'dht11_pin' + pin + ' = DHT11(' + pin + ')';
   var code = 'dht11_pin' + pin + '.get_result_once()';
