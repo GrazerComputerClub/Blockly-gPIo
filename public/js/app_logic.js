@@ -12,14 +12,18 @@ Bgpio.workspace = null;
 Bgpio.DEBUG = true;
 Bgpio.PIN_COUNT = 40;
 
+
 Bgpio.init = function () {
-    Bgpio.workspace = Blockly.inject('blocklyDiv', {
+    var blocklyArea = document.getElementById('blocklyArea');
+    var blocklyDiv = document.getElementById('blocklyDiv');
+    var blocklyMainMenu = document.getElementById('mainMenu');
+    Bgpio.workspace = Blockly.inject(blocklyDiv, {
         media: 'blockly/media/'
         , toolbox: document.getElementById('toolbox')
         , comments: true
-        , horizontalLayout : true 
-        , toolboxPosition : 'start'
-        , css : true
+        , horizontalLayout: false
+        , toolboxPosition: 'start'
+        , css: true
         , grid: {
             spacing: 20
             , length: 3
@@ -36,6 +40,27 @@ Bgpio.init = function () {
             , scaleSpeed: 1.2
         }
     });
+    var onresize = function (e) {
+        // Compute the absolute coordinates and dimensions of blocklyArea.
+        var element = blocklyArea;
+        var x = 0;
+        var y = 0;
+        do {
+            x += element.offsetLeft;
+            y += element.offsetTop;
+            element = element.offsetParent;
+        } while (element);
+        // Position blocklyDiv over blocklyArea.
+        blocklyDiv.style.position = 'absolute';
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+        blocklyDiv.style.height = blocklyArea.offsetHeight - blocklyMainMenu.offsetHeight + 'px';
+        Blockly.svgResize(Bgpio.workspace);
+    };
+    window.addEventListener('resize', onresize, false);
+    onresize();
+    Blockly.svgResize(Bgpio.workspace);
     Blockly.Xml.domToWorkspace(Bgpio.workspace
         , document.getElementById('startBlocks'));
     Bgpio.workspace.addChangeListener(Bgpio.renderPythonCode);
@@ -71,26 +96,26 @@ Bgpio.runMode = {
     , updateState_: function () {
         var modeIcon = document.getElementById('modeIcon');
         if (Bgpio.runMode.selected == 0) {
-          modeIcon.classList.remove("fab");
-          modeIcon.classList.remove("fa-raspberry-pi");
-          modeIcon.classList.add("fas");
-          modeIcon.classList.add("fa-bug");
-          document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
-          document.getElementById("debugInitButton").style.visibility = "visible";
-          document.getElementById("debugStepButton").style.visibility = "visible";
+            modeIcon.classList.remove("fab");
+            modeIcon.classList.remove("fa-raspberry-pi");
+            modeIcon.classList.add("fas");
+            modeIcon.classList.add("fa-bug");
+            document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
+            document.getElementById("debugInitButton").style.visibility = "visible";
+            document.getElementById("debugStepButton").style.visibility = "visible";
         } else {
-          modeIcon.classList.remove("fas");
-          modeIcon.classList.remove("fa-bug");
-          modeIcon.classList.add("fab");
-          modeIcon.classList.add("fa-raspberry-pi");
+            modeIcon.classList.remove("fas");
+            modeIcon.classList.remove("fa-bug");
+            modeIcon.classList.add("fab");
+            modeIcon.classList.add("fa-raspberry-pi");
 
-          // remove debug button because 
-          // those are not implemented in RPi run-mode
-          document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
-          document.getElementById("debugInitButton").style.visibility = "hidden";
-          document.getElementById("debugStepButton").style.visibility = "hidden";
+            // remove debug button because 
+            // those are not implemented in RPi run-mode
+            document.getElementById('runButton').setAttribute("onclick", "Bgpio.runMode.run()");
+            document.getElementById("debugInitButton").style.visibility = "hidden";
+            document.getElementById("debugStepButton").style.visibility = "hidden";
         }
-              var simulationContent = document.getElementById('simulationContentDiv');
+        var simulationContent = document.getElementById('simulationContentDiv');
         var executionContent = document.getElementById('executionContentDiv');
         if (this.selected === 0) {
             simulationContent.style.display = 'block';
@@ -187,4 +212,3 @@ Bgpio.getRaspPiIp = function () {
     }
     return null;
 };
-
