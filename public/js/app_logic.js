@@ -154,9 +154,10 @@ Bgpio.generateXml = function () {
     return xmlText;
 };
 
-Bgpio.renderPythonCode = function () {
+Bgpio.renderPythonCode = function (event) {
     // Only regenerate the code if a block is not being dragged
-    if (Blockly.dragMode_ != 0) {
+    if (event.type == Blockly.Events.MOVE
+      || event.type == Blockly.Events.UI) {
         return;
     }
     // Render Python Code with latest change highlight and syntax highlighting
