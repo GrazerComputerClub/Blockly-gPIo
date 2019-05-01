@@ -16,7 +16,7 @@
     <script src="blocks/gpio.js"></script>
     <script src="blocks/time.js"></script>
     <script src="blocks/text.js"></script>
-    <script src="blockly/msg/js/en.js"></script>
+    <script src="blockly/msg/js/de.js"></script>
     <link rel="stylesheet" type="text/css" href="css/general.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,7 @@
     <section class="page-header">
         <img src="img/gc2.png" style="position:absolute;left:10px;top:20px;width:100px"></img>
         <h1>GC²'s Blockly gPIo</h1>
-        <h2 class="project-tagline">GPIO visual programming for the Raspberry Pi with simple simulation.</h2>
+        <h2 class="project-tagline">Graphische GPIO Programmierung für den Raspberry Pi mit einfacher Simulation.</h2>
     </section>
 
     <div class="leftContent">
@@ -43,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close">&times;</span>
-                    <h3>Available Raspberry PIs</h3>
+                    <h3>Verfügbare Raspberry PIs</h3>
                 </div>
                 <div class="modal-body" style="text-align:center">
                     <select id="adrSelector" size="5" style="width:80%" ondblclick="switchToExecution()">
@@ -64,8 +64,8 @@
 
         </div>
         <div id="mainMenu" class="btn-group topLeftContent" align="middle">
-            <a href="index_de.html"><img class="fas fa-2x" style="position:relative;left:-5rem" border="0" src="img/united-kingdom.png"></img></a>
-            <i id="modeIcon" class="fas fa-bug fa-2x" style="color:dimgray;position:relative;left:-4rem"></i>
+            <a href="index.html"><img class="fas fa-2x" style="position:relative;left:-5rem" border="0" src="img/austria.png"></img></a>
+            <i id="modeIcon" class="fas fa-bug fa-2x" style="color:dimgray;position:relative;left:-4rem"></i></a>
             <a class="fileBtn" href="#" onclick="loadWork()"><i class="fas fa-folder-open fa-2x menuBtn" ></i></a>
             <a class="fileBtn" href="#" onclick="saveWork()" style="padding-right:0.5rem"><i class="fas fa-save fa-2x menuBtn" ></i></a>
             <a class="cfgBtn" href="#" id="modeBtn" style="padding-right:0.5rem"><i class="fas fa-cog fa-2x menuBtn" ></i></a>
@@ -78,7 +78,7 @@
         <table>
             <tr>
                 <td id="blocklyArea">
-                    Content goes here...
+                    Blockly kommt hier...
                 </td>
             </tr>
         </table>
@@ -267,21 +267,21 @@
             </table>
         </div>
         <div id="jsConsoleDiv" class="rightContentBottom">
-            <pre id="jsConsolePre" style="height: 100%">Simulated print output.</pre>
+            <pre id="jsConsolePre" style="height: 100%">Simulierte Ausgabe.</pre>
         </div>
     </div>
     <div id="executionContentDiv" class="content rightContent">
         <div id="pythonCodeDiv" class="rightContentTop">
-            <pre id="pythonCodePre" style="height: 100%">Python code goes here.</pre>
+            <pre id="pythonCodePre" style="height: 100%">Python Code kommt hier.</pre>
         </div>
         <div id="pythonConsoleDiv" class="rightContentBottom">
-            <pre id="pythonConsolePre" style="height: 100%">Python (RPi) real console output goes here.</pre>
+            <pre id="pythonConsolePre" style="height: 100%">Python (RPi) Konsolenoutput kommt hier.</pre>
         </div>
     </div>
 
     <!-- Toolbox -->
     <xml id="toolbox" style="display: none">
-        <category name="Logic" colour="210">
+        <category name="Logik" colour="210">
             <block type="controls_if"></block>
             <block type="logic_compare">
                 <field name="OP">EQ</field>
@@ -296,7 +296,7 @@
             <block type="logic_null"></block>
             <block type="logic_ternary"></block>
         </category>
-        <category name="Loops" colour="140">
+        <category name="Schleifen" colour="140">
             <block type="controls_repeat_ext">
                 <value name="TIMES">
                     <shadow type="math_number">
@@ -332,7 +332,7 @@
                 <field name="FLOW">BREAK</field>
             </block>
         </category>
-        <category name="Math" colour="190">
+        <category name="Mathematik" colour="190">
             <block type="math_number">
                 <field name="NUM">0</field>
             </block>
@@ -526,7 +526,7 @@
                 </value>
             </block>
         </category>
-        <category name="Lists" colour="90">
+        <category name="Listen" colour="90">
             <block type="lists_create_with">
                 <mutation items="0"></mutation>
             </block>
@@ -590,7 +590,7 @@
                 </value>
             </block>
         </category>
-        <category name="Colour" colour="10">
+        <category name="Farbe" colour="10">
             <block type="colour_picker">
                 <field name="COLOUR">#ff0000</field>
             </block>
@@ -630,8 +630,8 @@
                 </value>
             </block>
         </category>
-        <category name="Variables" colour="70" custom="VARIABLE"></category>
-        <category name="Functions" colour="130" custom="PROCEDURE"></category>
+        <category name="Variablen" colour="70" custom="VARIABLE"></category>
+        <category name="Funktionen" colour="130" custom="PROCEDURE"></category>
         <sep></sep>
         <category name="gPIo" colour="50">
             <block type="led_set"></block>
@@ -645,7 +645,7 @@
             <block type="tm1637_number"></block>
             <block type="tm1637_temperature"></block>
         </category>
-        <category name="Time" colour="190">
+        <category name="Zeit" colour="190">
             <block type="sleep_ms"></block>
         </category>
     </xml>
