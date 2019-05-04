@@ -2,13 +2,16 @@
 function saveWork() {
   var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-  var filename = 'work.xml'
-	var pom = document.createElement('a');
-	pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlText));
-	if (filename) {
-		pom.setAttribute('download', filename);
-	}
-	pom.click();
+
+  var blob = new Blob([xmlText], {type: "text/plain;charset=utf-8"});
+  saveAs(blob, "work.xml");
+  //var filename = 'work.xml'
+  //var pom = document.createElement('a');
+  //pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlText));
+  //if (filename) {
+  //        pom.setAttribute('download', filename);
+  //}
+  //pom.click();
 };
 
 function loadWork() {
