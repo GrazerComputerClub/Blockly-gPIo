@@ -21,7 +21,7 @@ Blockly.Blocks['tm1637'] = {
     } else {
       this.setTooltip("7-segment display with TM1637 chip");
       this.appendDummyInput()
-          .appendField("Send data to TM1637 display with");
+          .appendField("send data to TM1637 display with");
       this.appendDummyInput()
           .appendField("CLK on pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -105,7 +105,7 @@ Blockly.Blocks['tm1637_number'] = {
     } else {
       this.setTooltip("7-segment display with TM1637 chip");
       this.appendDummyInput()
-          .appendField("Write number to TM1637 display with");
+          .appendField("write number to TM1637 display with");
       this.appendDummyInput()
           .appendField("CLK on pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -192,7 +192,7 @@ Blockly.Blocks['tm1637_numbers'] = {
     } else {
       this.setTooltip("7-segment display with TM1637 chip");
       this.appendDummyInput()
-          .appendField("Write numbers to TM1637 display with");
+          .appendField("write numbers to TM1637 display with");
       this.appendDummyInput()
           .appendField("CLK on pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -283,7 +283,7 @@ Blockly.Blocks['tm1637_temperature'] = {
     } else {
       this.setTooltip("7-segment display with TM1637 chip");
       this.appendDummyInput()
-          .appendField("Write temperature to TM1637 display with");
+          .appendField("write temperature to TM1637 display with");
       this.appendDummyInput()
           .appendField("CLK on pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');

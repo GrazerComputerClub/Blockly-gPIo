@@ -18,7 +18,7 @@ Blockly.Blocks['hc_sr04'] = {
     } else {
       this.setTooltip("Ultrasonic Sensor - HC-SR04");
       this.appendDummyInput()
-          .appendField("Measure distance with HC_SR04");
+          .appendField("measure distance with HC_SR04");
       this.appendDummyInput()
           .appendField("ECHO on pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'ECHO');
