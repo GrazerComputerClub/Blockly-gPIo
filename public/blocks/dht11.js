@@ -5,15 +5,22 @@ Blockly.Blocks['dht11'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.appendDummyInput()
-        .appendField("Measure with DHT11 on pin#")
-        .appendField(new Blockly.FieldDropdown(PINS), 'PIN');
+    if (IsGerman()) {
+      this.setTooltip("DHT11 Temperatur- und Feuchtigkeitssensor");
+      this.appendDummyInput()
+          .appendField("miss Temperatur und Feuchtigkeit mit DHT11 am pin#")
+          .appendField(new Blockly.FieldDropdown(PINS), 'PIN');
+    } else {
+      this.setTooltip("DHT11 temperature-humidity sensor");
+      this.appendDummyInput()
+          .appendField("measure temperature and humidity with DHT11 on pin#")
+          .appendField(new Blockly.FieldDropdown(PINS), 'PIN');
+    }
     this.setOutput(true, "Array");
     this.setColour(GPIO_HUE);
     this.setInputsInline(false);
     this.setPreviousStatement(false, null);
     this.setNextStatement(false, null);
-    this.setTooltip("DHT11 temperature-humidity sensor");
     this.setHelpUrl("https://www.adafruit.com/product/385");
   }
 };

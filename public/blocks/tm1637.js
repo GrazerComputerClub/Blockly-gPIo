@@ -8,7 +8,7 @@ Blockly.Blocks['tm1637'] = {
     if (IsGerman()) {
       this.setTooltip("7-Segment Display mit TM1637 Chip");
       this.appendDummyInput()
-          .appendField("Sende Daten zum TM1637 Display mit");
+          .appendField("sende Daten zum TM1637 Display mit");
       this.appendDummyInput()
           .appendField("CLK auf pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -92,7 +92,7 @@ Blockly.Blocks['tm1637_number'] = {
     if (IsGerman()) {
       this.setTooltip("7-Segment Display mit TM1637 Chip");
       this.appendDummyInput()
-          .appendField("Schreibe Zahl auf das TM1637 Display mit");
+          .appendField("schreibe Zahl auf das TM1637 Display mit");
       this.appendDummyInput()
           .appendField("CLK auf pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -176,7 +176,7 @@ Blockly.Blocks['tm1637_numbers'] = {
     if (IsGerman()) {
       this.setTooltip("7-Segment Display mit TM1637 Chip");
       this.appendDummyInput()
-          .appendField("Schreibe Zahlen auf das TM1637 display mit");
+          .appendField("schreibe Zahlen auf das TM1637 display mit");
       this.appendDummyInput()
           .appendField("CLK auf pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
@@ -270,7 +270,7 @@ Blockly.Blocks['tm1637_temperature'] = {
     if (IsGerman()) {
       this.setTooltip("7-Segment Display mit TM1637 Chip");
       this.appendDummyInput()
-          .appendField("Schreibe Temperatur auf das TM1637 display mit ");
+          .appendField("schreibe Temperatur auf das TM1637 display mit ");
       this.appendDummyInput()
           .appendField("CLK auf pin#")
           .appendField(new Blockly.FieldDropdown(PINS), 'CLK');
