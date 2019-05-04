@@ -12,6 +12,13 @@ Bgpio.workspace = null;
 Bgpio.DEBUG = true;
 Bgpio.PIN_COUNT = 40;
 
+function IsGerman() {
+  var langCode = document.documentElement.lang;
+  if (langCode == "de")  {
+    return true;
+  }
+  return false;
+}
 
 Bgpio.init = function () {
     var blocklyArea = document.getElementById('blocklyArea');
