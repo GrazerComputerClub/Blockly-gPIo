@@ -201,7 +201,7 @@ Bgpio.clearJsConsole = function (text) {
     if (Bgpio.DEBUG) console.log('Clear console with id: ' + consoleId);
     var jsConsole = document.getElementById(consoleId);
     if (Bgpio.runMode.getSelectedMode() == Bgpio.runMode.types[0])
-        jsConsole.textContent = 'Simulated print output.\n';
+        jsConsole.textContent = IsGerman() ? 'Simulierte Ausgabe.\n' : 'Simulated print output.\n';
     else
         jsConsole.textContent = '';
 };

@@ -26,7 +26,7 @@ async def request_handler(websocket, path):
             data = await asyncio.wait_for(websocket.recv(), timeout=0.02)
             parsed_json = json.loads(data)
             if parsed_json['content'] == 'python_code':
-                await run_python_code(parsed_json['code'], websocket)
+                await run_python_code(parsed_json['code'], parsed_json['lang'], websocket)
         except asyncio.TimeoutError:
             pass # nothing in recv queue
 
@@ -38,10 +38,10 @@ def run_server():
     asyncio.get_event_loop().run_forever()
 
 
-async def run_python_code(code, ws):
+async def run_python_code(code, langCode, ws):
     """ Description. """
     file_location = create_python_file(code)
-    await run_python_file(file_location, ws)
+    await run_python_file(file_location, langCode, ws)
 
 
 def create_python_file(code):
@@ -71,7 +71,7 @@ def enqueue_output(out, queue):
     out.close()
 
 
-async def run_python_file(location, websocket):
+async def run_python_file(location, langCode, websocket):
     """ Description. """
     cli_command = ['/usr/bin/python3', location]
     print('CLI command: %s' % ' '.join(cli_command))
@@ -88,11 +88,14 @@ async def run_python_file(location, websocket):
         stdout_thread.daemon = True # thread dies with the program
         stdout_thread.start()
         print('Sub process started  @ ' + str(start_time))
-        await websocket.send(json.dumps({ 'stdout_line' : 'Program started...' }) + '\n')
+        startMsg = 'Program started...';
+        if langCode == 'de':
+            startMsg = 'Programm gestartet...'
+        await websocket.send(json.dumps({ 'stdout_line' : startMsg }) + '\n')
         while current_process.poll() == None:
             try:
                 line = queue.get_nowait() # or queue.get(timeout=.1)
-                await websocket.send(json.dumps({ 'stdout_line' : str(line.rstrip()) }) + '\n')
+                await websocket.send(json.dumps({ 'stdout_line' : line.rstrip().decode('UTF-8') }) + '\n')
             except Empty:
                 # ok, no line at the moment
                 pass
