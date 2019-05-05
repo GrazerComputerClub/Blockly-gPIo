@@ -163,10 +163,10 @@ Bgpio.generateXml = function () {
 
 Bgpio.renderPythonCode = function (event) {
     // Only regenerate the code if a block is not being dragged
-    if (event.type == Blockly.Events.MOVE
+    /*if (event.type == Blockly.Events.MOVE
       || event.type == Blockly.Events.UI) {
         return;
-    }
+    }*/
     // Render Python Code with latest change highlight and syntax highlighting
     var pyPre = document.getElementById('pythonCodePre');
     pyPre.textContent = Bgpio.generatePythonCode();
