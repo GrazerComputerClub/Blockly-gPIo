@@ -1,223 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: #fff;
-  font-family: sans-serif;
+    height: 100%;
+    margin: 0;
 }
+
+body {
+    background-color: #fff;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #606c71;
+}
+
+table {
+    height: 100%;
+    width: 100%;
+}
+
 h1 {
-  font-weight: normal;
-  font-size: 140%;
-  font-weight: 600;
+    font-weight: normal;
+    font-size: 140%;
+    font-weight: 600;
 }
+
 pre {
-  margin: 0;
-  padding: 8px;
+    margin: 0;
+    padding: 8px;
 }
 
-.debugBtn {
-	color: #ff0000;
+a {
+    color: #1e6bb8;
+    text-decoration: none;
 }
 
-.cfgBtn {
-  color: chocolate;
+a:hover {
+    text-decoration: underline;
 }
 
-.fileBtn {
-  color: darkorange;
-}
-
-.ChgModeBtn {
-	color: #00ff00;
-}
-
-/* Content */
-.content {
-  height: 720px;
-  padding: 0;
-  margin: 0;
-}
-
-
-.topLeftContent {
-  padding:5px;
-  background:#dddddd;
-  height: 40px;
-}
-
-.leftContent {
-  width: 64%;
-  float: left;
-}
-
-.rightContent {
-  width: 35%;
-  float: left;
-  display: block;
-  margin-left: 1%;
-  border-style: solid;
-  border-color: #E2E2E2;
-  border-width: 1px;
-}
-.rightContentTop {
-  height: 620px;
-  overflow: auto;
-}
-.rightContentBottom {
-  height: 140px;
-  overflow: auto;
-  background-color: #6D6C6C;
-  color: #F1F1F1;
-}
-
-#executionContentDiv {
-  display: none;
-}
-
-/* GPIO table */
-#pinoutTable {
-  margin-top: 8px;
-  margin-left: 8px;
-}
-#pinoutTable td, th {
-  padding: 0px 8px 0px 8px;
-  text-align: center;
-}
-#pinoutTable th {
-  border: 1px solid black;
-}
-#pinoutTable .noborder {
-  border: none;
-}
-
-.fa-2x {
-  vertical-align: middle;
-}
-
-.pinVolt {
-  color: #ff6600;
-	font-weight: bold;
-}
-.pinGround {
-  color: #000000;
-	font-weight: bold;
-}
-.piI2c {
-  color: darkcyan;
-}
-.piGpio {
-  color: #000000;
-}
-.piSpi {
-  color: #800080;
-}
-
-.piPWM {
-	color: chocolate;
-}
-
-/* GPIO states */
-.pinDefault {
-  background-color: white;
-  color: black;
-}
-.pinDigitalHigh {
-  background-color: red;
-  color: black;
-}
-.pinDigitalLow {
-  background-color: black;
-  color: white;
-}
-
-/* Other */
-#modeExecution {
-  display: none;
-}
-
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: absolute;
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  /*top: 0; position in div*/
-  width: 64%; /* Full width */
-  height: 760px; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  color:#000000;
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.popup-btn:hover,
-.popup-btn:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.menuBtn:hover,
-.menuBtn:focus {
-  color: #000;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  /* background-color: #5cb85c; */
-	background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957);
-  color: white;
-	text-align: center;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-  padding: 2px 16px;
-  /* background-color: #5cb85c; */
-	background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957);
-  color: white;
-}

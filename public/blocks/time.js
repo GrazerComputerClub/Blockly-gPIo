@@ -17,16 +17,27 @@ Blockly.Blocks['sleep_ms'] = {
   init: function() {
     this.setHelpUrl('');
     this.setColour(TIME_HUE);
-    this.appendValueInput(
-          'SLEEP_TIME_MILI', 'Number')
-        .setCheck('Number')
-        .appendField('wait');
-    this.appendDummyInput()
-        .appendField('milliseconds');
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip('Wait specific time in milliseconds');
+    if (IsGerman()) {
+      // quick 'n dirty in-place translation
+      this.appendValueInput(
+            'SLEEP_TIME_MILI', 'Number')
+          .setCheck('Number')
+          .appendField('warte');
+      this.appendDummyInput()
+          .appendField('Millisekunden');
+      this.setTooltip('Warte eine gewisse Zeit in Millisekunden.');
+    } else {
+      this.appendValueInput(
+            'SLEEP_TIME_MILI', 'Number')
+          .setCheck('Number')
+          .appendField('wait');
+      this.appendDummyInput()
+          .appendField('milliseconds');
+      this.setTooltip('Wait specific time in milliseconds.');
+    }
   }
 };
 
