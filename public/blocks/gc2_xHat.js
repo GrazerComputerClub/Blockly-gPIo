@@ -259,7 +259,8 @@ Blockly.Blocks['gc2_xHat_tm1637_write'] = {
 Blockly.JavaScript['gc2_xHat_tm1637_write'] = function(block) {
   var argument0 = Blockly.JavaScript.valueToCode(block, 'NUM',
       Blockly.JavaScript.ORDER_NONE) || '';
-  return "jsPrint('TM1637 data values: " + argument0 + "');\n";
+  return IsGerman() ? "jsPrint('TM1637 Wert: " + argument0 + "');\n" :
+    "jsPrint('TM1637 data values: " + argument0 + "');\n";
 };
 
 /**
@@ -276,4 +277,122 @@ Blockly.Python['gc2_xHat_tm1637_write'] = function(block) {
   return code;
 };
 
-//TODO make noise, traffic light
+Blockly.Blocks['gc2_xHat_beep'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    if (IsGerman()) {
+      this.setTooltip("Mache lärm mit dem Buzzer");
+      this.appendValueInput('NUM', 'Number')
+          .setCheck('Number')
+          .appendField("mache Beep");
+      this.appendDummyInput()
+          .appendField("mal");
+    } else {
+      this.setTooltip("Make noise with the buzzer");
+      this.appendValueInput('NUM', 'Number')
+          .setCheck('Number')
+          .appendField("beep");
+      this.appendDummyInput()
+          .appendField("times");
+    }
+    this.setColour(GPIO_HUE);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setInputsInline(true);
+    this.setHelpUrl("https://github.com/GrazerComputerClub");
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['gc2_xHat_beep'] = function(block) {
+  return "jsPrint('Beep :)');\n";
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['gc2_xHat_beep'] = function(block) {
+  var number = Blockly.Python.valueToCode(block, 'NUM', Blockly.Python.ORDER_ATOMIC) || '0';
+  Blockly.Python.definitions_['import_buzzer'] = 'from gpiozero import Buzzer';
+  var buzzer = 'buzzer_18';
+  Blockly.Python.definitions_['declare_' + buzzer] = buzzer + ' = Buzzer(18)';
+  var code = buzzer + '.beep(n=' + number + ')\n';
+  return code;
+};
+
+Blockly.Blocks['gc2_xHat_trafficlight'] = {
+  /**
+   * Description.
+   * @this Blockly.Block
+   */
+  init: function() {
+    if (IsGerman()) {
+      this.setTooltip("Schalte eine Ampel");
+      this.appendDummyInput()
+          .appendField("schalte Ampel auf")
+          .appendField(
+              new Blockly.FieldDropdown(
+                [ ['Aus', '0'],
+                  ['Grün', '1'], 
+                  ['Gelb', '2'],
+                  ['Rot', '3']]),
+             'LIGHT');
+    } else {
+      this.setTooltip("Control a traffic light");
+      this.appendDummyInput()
+          .appendField("schalte Ampel auf")
+          .appendField(
+              new Blockly.FieldDropdown(
+                [ ['Off', '0'],
+                  ['Green', '1'], 
+                  ['Amber', '2'],
+                  ['Red', '3']]),
+             'LIGHT');
+    }
+    this.setColour(GPIO_HUE);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setInputsInline(true);
+    this.setHelpUrl("https://github.com/GrazerComputerClub");
+  }
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.JavaScript['gc2_xHat_trafficlight'] = function(block) {
+  var lightState = block.getField('LIGHT').getText();
+  return IsGerman() ? "jsPrint('Ampel ist " + lightState + "');\n" 
+    : "jsPrint('Traffic light is " + lightState + "');\n";
+};
+
+/**
+ * Description.
+ * @param {!Blockly.Block} block Block to generate the code from.
+ * @return {string} Completed code.
+ */
+Blockly.Python['gc2_xHat_trafficlight'] = function(block) {
+  var lightState = block.getFieldValue('LIGHT');
+  Blockly.Python.definitions_['import_gpiozero_trafficlight'] = 'from gpiozero import TrafficLights';
+  Blockly.Python.definitions_['declare_trafficlight162021'] = 'trafficlight162021 = TrafficLights(16, 20, 21)';
+
+  var greenState = (lightState == '1') ? 'on()' : 'off()';
+  var amberState = (lightState == '2') ? 'on()' : 'off()';
+  var redState = (lightState == '3') ? 'on()' : 'off()';
+  var code = 'trafficlight162021.green.' + greenState + '\n'
+      + 'trafficlight162021.amber.' + amberState + '\n'
+      + 'trafficlight162021.red.' + redState + '\n';
+  return code;
+};
+
