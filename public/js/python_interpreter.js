@@ -23,7 +23,8 @@ Bgpio.PythonInterpreter.run = function() {
   var runButton = document.getElementById('runButton');
   runButton.removeAttribute("onclick");
   Bgpio.clearJsConsole();
-  Bgpio.appendTextJsConsole('Executing script @ ' + Bgpio.getRaspPiIp() + '\n');
+  var execMsg = IsGerman() ? 'Exekutiere Skript @' + Bgpio.getRaspPiIp() + '\n' : 'Executing script @' + Bgpio.getRaspPiIp() + '\n';
+  Bgpio.appendTextJsConsole(execMsg);
   var code = document.getElementById('pythonCodePre').textContent;
   if (Bgpio.DEBUG) console.log('Run Python code: \n' + code);
   Bgpio.WebSocket.connect(Bgpio.getRaspPiIp());

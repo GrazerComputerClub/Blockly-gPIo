@@ -26,12 +26,12 @@ Bgpio.WebSocket.connect = function(ip) {
 
 Bgpio.WebSocket.open = function(evt) {
   if (Bgpio.DEBUG) console.log("connected\n");
-  Bgpio.appendTextJsConsole("Connected...\n");
+  Bgpio.appendTextJsConsole(IsGerman() ? "Verbunden...\n" : "Connected...\n");
 };
 
 Bgpio.WebSocket.close = function(evt) {
   if (Bgpio.DEBUG) console.log("disconnected\n");
-  Bgpio.appendTextJsConsole("Disconnected!\n");
+  Bgpio.appendTextJsConsole(IsGerman() ? "Getrennt!\n" : "Disconnected!\n");
   var runButton = document.getElementById('runButton');
   runButton.setAttribute("onclick", "Bgpio.runMode.run()")
 };
@@ -54,7 +54,7 @@ Bgpio.WebSocket.receive = function(evt) {
   else if (recvData.state_change) {
     var runButton = document.getElementById('runButton');
     runButton.setAttribute("onclick", "Bgpio.runMode.run()")
-    Bgpio.appendTextJsConsole('### Done ###');
+    Bgpio.appendTextJsConsole(IsGerman() ? '### Erledigt ###' : '### Done ###');
   }
 };
 
@@ -64,13 +64,21 @@ Bgpio.WebSocket.error = function(evt) {
 };
 
 Bgpio.WebSocket.sendCode = function(codeStr) {
-  var payload = JSON.stringify({'content': 'python_code', 'code': codeStr})
+  var payload = JSON.stringify({
+    'content': 'python_code', 
+    'code': codeStr,
+    'lang': document.documentElement.lang
+  })
   if (Bgpio.DEBUG) console.log('payload: ' + payload + '\n');
   Bgpio.WebSocket.ws.onopen = () => Bgpio.WebSocket.send(payload);
 };
 
 Bgpio.WebSocket.sendStop = function() {
-  var payload = JSON.stringify({'content': 'request', 'request_code': 'stop'})
+  var payload = JSON.stringify({
+    'content': 'request', 
+    'request_code': 'stop',
+    'lang': document.documentElement.lang
+  })
   if (Bgpio.DEBUG) console.log('payload: ' + payload + '\n');
   // here the socket must be open
   Bgpio.WebSocket.send(payload);
