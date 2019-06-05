@@ -1,0 +1,56 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="text_print" id="[@jn,^7[*o_h?7A}N!Y|" x="20" y="9">
+    <value name="TEXT">
+      <block type="text" id="$L=ZCR8)C=T@pz20j/rH">
+        <field name="TEXT">GC2 Blockly gPIo LED blink</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_repeat_ext" id="u4:9OsE=y1-7*KgbZpC4">
+        <value name="TIMES">
+          <shadow type="math_number" id="ENTtCSD]#X|n=GJ]Z,Q1">
+            <field name="NUM">3</field>
+          </shadow>
+        </value>
+        <statement name="DO">
+          <block type="led_set" id="D.4`5BGf#2WSx8|{!l!V">
+            <field name="PIN">36</field>
+            <value name="STATE">
+              <block type="pin_binary" id="u0RU,e0SEYm!fE@Slnjg">
+                <field name="STATE">HIGH</field>
+              </block>
+            </value>
+            <next>
+              <block type="sleep_ms" id="T/Vxy)igVHUc%Bm$b!Nb">
+                <value name="SLEEP_TIME_MILI">
+                  <block type="math_number" id="o`64@-FmaT.C79Z}J5|V">
+                    <field name="NUM">500</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="led_set" id="mqV){ov@E{!I7*+YL.Hz">
+                    <field name="PIN">36</field>
+                    <value name="STATE">
+                      <block type="pin_binary" id="DvCTMDr~kuJ/=lq=PEq`">
+                        <field name="STATE">LOW</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sleep_ms" id="Opv/5ZY41@15pN5ItDwN">
+                        <value name="SLEEP_TIME_MILI">
+                          <block type="math_number" id="!AaX3FT^TW{;tFjGPMM}">
+                            <field name="NUM">500</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
