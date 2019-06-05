@@ -32,7 +32,7 @@
                 </value>
                 <next>
                   <block type="led_set">
-                    <field name="PIN">40</field>
+                    <field name="PIN">38</field>
                     <value name="STATE">
                       <block type="pin_binary">
                         <field name="STATE">LOW</field>
@@ -40,7 +40,7 @@
                     </value>
                     <next>
                       <block type="led_set">
-                        <field name="PIN">38</field>
+                        <field name="PIN">40</field>
                         <value name="STATE">
                           <block type="pin_binary">
                             <field name="STATE">LOW</field>
@@ -50,7 +50,7 @@
                           <block type="sleep_ms">
                             <value name="SLEEP_TIME_MILI">
                               <block type="math_number">
-                                <field name="NUM">4000</field>
+                                <field name="NUM">5000</field>
                               </block>
                             </value>
                             <next>
@@ -96,7 +96,7 @@
                                                   <block type="sleep_ms">
                                                     <value name="SLEEP_TIME_MILI">
                                                       <block type="math_number">
-                                                        <field name="NUM">3000</field>
+                                                        <field name="NUM">4000</field>
                                                       </block>
                                                     </value>
                                                     <next>
@@ -147,6 +147,35 @@
                                                             </next>
                                                           </block>
                                                         </statement>
+                                                        <next>
+                                                          <block type="led_set">
+                                                            <field name="PIN">38</field>
+                                                            <value name="STATE">
+                                                              <block type="pin_binary">
+                                                                <field name="STATE">HIGH</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="led_set">
+                                                                <field name="PIN">40</field>
+                                                                <value name="STATE">
+                                                                  <block type="pin_binary">
+                                                                    <field name="STATE">LOW</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="sleep_ms">
+                                                                    <value name="SLEEP_TIME_MILI">
+                                                                      <block type="math_number">
+                                                                        <field name="NUM">2000</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
                                                       </block>
                                                     </next>
                                                   </block>
