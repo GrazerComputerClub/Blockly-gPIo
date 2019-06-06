@@ -1,0 +1,43 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="text_print" id="r^FJ%u3_UEg!`*`SC69W" x="20" y="9">
+    <value name="TEXT">
+      <block type="text" id="_CadU:0skv@Ecx0.{dn0">
+        <field name="TEXT">GC²'s Blockly implementierung für Raspberry Pi</field>
+      </block>
+    </value>
+    <next>
+      <block type="text_print" id="cWY*)z(|V._+7(iL-+SV">
+        <value name="TEXT">
+          <block type="text" id="|w@Mp|MVSn?*ocA7*U/]">
+            <field name="TEXT">Beispiel für Entfernungsmessung</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" id=")%w_Of?$8Cz!;1~fWA;B">
+            <value name="TEXT">
+              <block type="text_join" id="U?|(IRa8,Sl-HM_ghyS1">
+                <mutation items="3"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="5@X#Jh+I,9etNv9NBPn_">
+                    <field name="TEXT">Entfernung:</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="hc_sr04" id="sQJrq`@=A)MutGUUuk-X">
+                    <field name="ECHO">13</field>
+                    <field name="TRIGGER">11</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text" id="YwzHdQQ1ie)#l2NY,ea(">
+                    <field name="TEXT"> cm </field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
