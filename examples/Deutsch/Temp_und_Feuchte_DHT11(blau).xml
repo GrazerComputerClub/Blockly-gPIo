@@ -22,7 +22,7 @@
             <field name="VAR" id="cPsnPM*ft5-.C)7#!JLw" variabletype="">dht11_1stTemp_2ndHumidity</field>
             <value name="VALUE">
               <block type="dht11" id="_S!f(@8OGJ]Tw+R;Y0[.">
-                <field name="PIN">22</field>
+                <field name="PIN">15</field>
               </block>
             </value>
             <next>
