@@ -2,7 +2,7 @@
   <block type="text_print" x="20" y="9">
     <value name="TEXT">
       <block type="text">
-        <field name="TEXT">GC2 Blockly gPIo LED blink</field>
+        <field name="TEXT">GC2 Blockly gPIo LED blinking</field>
       </block>
     </value>
     <next>

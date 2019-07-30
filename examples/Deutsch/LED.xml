@@ -1,0 +1,59 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="text_print" x="20" y="9">
+    <value name="TEXT">
+      <block type="text">
+        <field name="TEXT">GC2 Blockly gPIo LED blinken</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+          <block type="math_number">
+            <field name="NUM">3</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="led_set">
+            <field name="PIN">36</field>
+            <value name="STATE">
+              <block type="pin_binary">
+                <field name="STATE">HIGH</field>
+              </block>
+            </value>
+            <next>
+              <block type="sleep_ms">
+                <value name="SLEEP_TIME_MILI">
+                  <block type="math_number">
+                    <field name="NUM">500</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="led_set">
+                    <field name="PIN">36</field>
+                    <value name="STATE">
+                      <block type="pin_binary">
+                        <field name="STATE">LOW</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sleep_ms">
+                        <value name="SLEEP_TIME_MILI">
+                          <block type="math_number">
+                            <field name="NUM">500</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -2,22 +2,22 @@
   <block type="text_print" x="150" y="90">
     <value name="TEXT">
       <block type="text">
-        <field name="TEXT">GC²'s Blockly implementation for Raspberry Pi</field>
+        <field name="TEXT">GC²'s Blockly Implementerung for Raspberry Pi</field>
       </block>
     </value>
     <next>
       <block type="text_print">
         <value name="TEXT">
           <block type="text">
-            <field name="TEXT">Show current temperature on the display</field>
+            <field name="TEXT">Zeigt aktuelle Temperatur auf der Anzeige</field>
           </block>
         </value>
         <next>
           <block type="variables_set">
-            <field name="VAR">DataArray_1stIsTemp_2ndIsHumidity</field>
+            <field name="VAR">Liste_1istTemp_2istFeuchte</field>
             <value name="VALUE">
               <block type="dht11">
-                <field name="PIN">15</field>
+                <field name="PIN">22</field>
               </block>
             </value>
             <next>
@@ -31,7 +31,7 @@
                     <field name="WHERE">FIRST</field>
                     <value name="VALUE">
                       <block type="variables_get">
-                        <field name="VAR">DataArray_1stIsTemp_2ndIsHumidity</field>
+                        <field name="VAR">Liste_1istTemp_2istFeuchte</field>
                       </block>
                     </value>
                   </block>

@@ -1,0 +1,103 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="" id="cPsnPM*ft5-.C)7#!JLw">dht11_1stTemp_2ndHumidity</variable>
+    <variable type="" id="wsZY)g#o|Vr^wN^T}2V:">fmt_output</variable>
+  </variables>
+  <block type="text_print" id="_,AplzO8G%Rp*7[fTvIk" x="70" y="50">
+    <value name="TEXT">
+      <block type="text" id="VG42(!^zZ;oskbv][KZa">
+        <field name="TEXT">Temperaturmessung mit DHT11</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_whileUntil" id="~3pZ^@:uT^k,_;Tc=o40">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="-[^j)277//P=)eYcOg[N">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="variables_set" id="4(az;$,LMeN:#w9Ld{lE">
+            <field name="VAR" id="cPsnPM*ft5-.C)7#!JLw" variabletype="">dht11_1stTemp_2ndHumidity</field>
+            <value name="VALUE">
+              <block type="dht11" id="_S!f(@8OGJ]Tw+R;Y0[.">
+                <field name="PIN">22</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="Da%~3;pf?}]Rw|82=Jv~">
+                <field name="VAR" id="wsZY)g#o|Vr^wN^T}2V:" variabletype="">fmt_output</field>
+                <value name="VALUE">
+                  <block type="text_join" id="Y0hNmJvJ1IA]5B@q=SPL">
+                    <mutation items="5"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="EBRn+4EHeyO3S.?a3k8Y">
+                        <field name="TEXT">Temperatur: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="lists_getIndex" id="Z7tTu+C`a?9ckPuL4%gI">
+                        <mutation statement="false" at="false"></mutation>
+                        <field name="MODE">GET</field>
+                        <field name="WHERE">FIRST</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="$WQud-e/y9!1l$,xymF3">
+                            <field name="VAR" id="cPsnPM*ft5-.C)7#!JLw" variabletype="">dht11_1stTemp_2ndHumidity</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="g)yOypDMTx(9YF#6.bHD">
+                        <field name="TEXT"> °C | Feuchte: </field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="lists_getIndex" id="C{6kf_NE5dJ_;bBPwLS(">
+                        <mutation statement="false" at="false"></mutation>
+                        <field name="MODE">GET</field>
+                        <field name="WHERE">LAST</field>
+                        <value name="VALUE">
+                          <block type="variables_get" id="qy#2?QUGNA3|:~W0nwxi">
+                            <field name="VAR" id="cPsnPM*ft5-.C)7#!JLw" variabletype="">dht11_1stTemp_2ndHumidity</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="text" id="q@_C:48H1QVxmtxm|15w">
+                        <field name="TEXT">%</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" id="@}~_4;vytC:8U?=H*tY6">
+                    <value name="TEXT">
+                      <shadow type="text">
+                        <field name="TEXT">abc</field>
+                      </shadow>
+                      <block type="variables_get" id="=iuM781$moawfS)tvct/">
+                        <field name="VAR" id="wsZY)g#o|Vr^wN^T}2V:" variabletype="">fmt_output</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="sleep_ms" id="0*P]|GM#_ws;Zp~S*P{G">
+                        <value name="SLEEP_TIME_MILI">
+                          <block type="math_number" id="P=*aGPPBZPSl~O!0Fan4">
+                            <field name="NUM">10000</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

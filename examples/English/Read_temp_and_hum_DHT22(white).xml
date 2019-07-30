@@ -15,14 +15,14 @@
         </value>
         <statement name="DO">
           <block type="variables_set">
-            <field name="VAR">dht11_1stTemp_2ndHumidity</field>
+            <field name="VAR">dht22_1stTemp_2ndHumidity</field>
             <value name="VALUE">
               <block type="dht22">
-                <field name="PIN">3</field>
+                <field name="PIN">22</field>
               </block>
             </value>
             <next>
-              <block type="variables_set">
+       <block type="variables_set">
                 <field name="VAR">fmt_output</field>
                 <value name="VALUE">
                   <block type="text_join">
@@ -39,7 +39,7 @@
                         <field name="WHERE">FIRST</field>
                         <value name="VALUE">
                           <block type="variables_get">
-                            <field name="VAR">dht11_1stTemp_2ndHumidity</field>
+                            <field name="VAR">dht22_1stTemp_2ndHumidity</field>
                           </block>
                         </value>
                       </block>
@@ -56,7 +56,7 @@
                         <field name="WHERE">LAST</field>
                         <value name="VALUE">
                           <block type="variables_get">
-                            <field name="VAR">dht11_1stTemp_2ndHumidity</field>
+                            <field name="VAR">dht22_1stTemp_2ndHumidity</field>
                           </block>
                         </value>
                       </block>
