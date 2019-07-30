@@ -18,7 +18,7 @@
             <field name="VAR">dht22_1stTemp_2ndHumidity</field>
             <value name="VALUE">
               <block type="dht22">
-                <field name="PIN">22</field>
+                <field name="PIN">15</field>
               </block>
             </value>
             <next>
