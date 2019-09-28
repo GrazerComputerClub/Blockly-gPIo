@@ -8,17 +8,40 @@ to create an easy system for our Raspjamming events. Thankfully, we didn't need 
 we found [blockly-gpio](https://github.com/carlosperate/Blockly-gPIo) from carlosperate on Github. Therefore, we 
 just improved his proof of concept to a slightly better working solution for our Jam. ;)</p>
 
+## Dependencies
+ * python3
+ * python3 librarys (websockets, gpiozero)
+ * webserver, if run locally
+ 
+## Installation
+* Make sure that Raspbian 10 (Buster) has the all dependencies installed:  
+```
+  sudo apt-get install python3-dev python3-gpiozero python3-pip python3-websocket  
+  sudo pip3 install websockets -t /usr/local/lib/python3.7/dist-packages
+ ```
+*  Download this repository and execute *run.py*:  
+  ```
+  git clone https://github.com/GrazerComputerClub/Blockly-gPIo.git  
+  cd Blockly-gPIo  
+  python3 run.py
+  ``` 
+*  Optional: Install local webserver with blockly-gpio   
+  ```
+  apt-get install lighttpd
+  git clone https://github.com/GrazerComputerClub/Blockly-gPIo.git
+  install -v -o www-data -g www-data -m 775 -d "/var/www/html/Blockly-gPIo/"
+  cp -r Blockly-gPIo/public/* "/var/www/html/Blockly-gPIo"
+  chown -R www-data:www-data "/var/www/html/Blockly-gPIo"
+  ```
+  
 ## How to use
-1st: Make sure that the RPi has the following packages installed:
-  * python3 (apt-get install python3-dev python3-gpiozero python3-pip python3-websocket)
-  * websockets lib (pip3 install websockets) 
-  * gpiozero lib
+Just open [github web](https://grazercomputerclub.github.io/Blockly-gPIo/) with your favourite browser and press RUN button.  
+The button will open [blockly-gpio](http://strohmayers.com/Blockly-gPIo/) on a different domain, because its not working with github ssl webpage.  
+But feel free to install blockly-gpio on a local or different webserver and open that webpage with your browser.  
+Now use simulation mode or go to settings and enter IP address of your Raspberry Pi running the service (see installation second point). The play button will start the programm (on Raspberry Pi if configured). 
 
-2nd: Download this repository and execute *run.py* (call 'python3 run.py')
 
-3rd: Just open [blockly-gpio](https://grazercomputerclub.github.io/Blockly-gPIo/) and start to code.
-
-Future tasks:
+## Future tasks
 * wss support (https)
 * Port scanner to find available servers
 * Dark theme
