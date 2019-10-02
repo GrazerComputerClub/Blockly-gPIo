@@ -62,6 +62,6 @@ Blockly.Python['sleep_ms'] = function(block) {
   var delayTime = Blockly.Python.valueToCode(
       block, 'SLEEP_TIME_MILI', Blockly.Python.ORDER_ATOMIC) || '0';
   Blockly.Python.definitions_['import_sleep'] = 'from time import sleep';
-  var code = 'sleep(' + delayTime / 1000 + ');\n';
+  var code = 'sleep(' + delayTime / 1000 + ')\n';
   return code;
 };
