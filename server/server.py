@@ -53,7 +53,7 @@ def create_python_file(code):
             print('Adding flush statements after print calls...')
             extended_code = 'import sys\nimport time\n'
             extended_code += re.sub(r'(.*)(print\(.*\))(\n)', r'\1\2\3\1sys.stdout.flush()\n\3', code)
-            extended_code += 'time.sleep(0.1)\n'
+            extended_code += '\ntime.sleep(0.1)\n'
             python_file.write(extended_code)
             print('Added flush lines.')
         finally:
