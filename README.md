@@ -8,6 +8,8 @@ to create an easy system for our Raspjamming events. Thankfully, we didn't need 
 we found [blockly-gpio](https://github.com/carlosperate/Blockly-gPIo) from carlosperate on Github. Therefore, we 
 just improved his proof of concept to a slightly better working solution for our Jam. ;)</p>
 
+![Blockly-gPIo screenshot](https://github.com/GrazerComputerClub/Blockly-gPIo/raw/master/blockly_gPIo_screenshot.png)
+
 ## Dependencies
  * python3
  * python3 librarys (websockets, gpiozero)
