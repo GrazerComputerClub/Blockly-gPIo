@@ -35,7 +35,11 @@ just improved his proof of concept to a slightly better working solution for our
   cp -r Blockly-gPIo/public/* "/var/www/html/Blockly-gPIo"
   chown -R www-data:www-data "/var/www/html/Blockly-gPIo"
   ```
-  
+## Pre-installed Image
+
+The program is also pre-installed in our Raspjamming OS image. It can be used for all Raspberry Pi Boards.
+Please take a look at our GutHub repository [Raspjamming OS](https://github.com/GrazerComputerClub/Raspjamming-OS).
+
 ## How to use
 Just open [github web](https://grazercomputerclub.github.io/Blockly-gPIo/) with your favourite browser and press RUN button.  
 The button will open [blockly-gpio](http://strohmayers.com/Blockly-gPIo/) on a different domain, because its not working with github ssl webpage.  
